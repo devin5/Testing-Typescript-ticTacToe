@@ -7,3 +7,9 @@ test('renders learn react link', () => {
   const appDiv = getByTestId(/app/);
   expect(appDiv).toBeInTheDocument();
 });
+
+test('renders GameBoard', () => {
+  const { getByTestId } = render(<App />);
+  const game = getByTestId(/game-board/);
+  expect(game).toBeInTheDocument();
+});
