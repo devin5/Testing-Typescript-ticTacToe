@@ -20,7 +20,7 @@ function restart(){
 
   return (
     <div data-testid="app" className="App">
-      {console.log("ScoreObject: ", scoreObject)}
+
       {result === "loser" ? null : <h1>{`${userSymbol === "X"? "O": "X"} is ${result}`}</h1>}
       <div className={result === "winner" ||result ===  "tied" ? "game-board dulled" : "game-board"}>
         {boxArray.map((box: string) => (

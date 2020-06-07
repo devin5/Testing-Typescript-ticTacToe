@@ -1,7 +1,6 @@
 export const FindWinner = (obj: any) => {
   let result = "loser"
   let tied = true
-  console.log("look here", obj["box-1"], obj["box-2"] , obj["box-3"])
   
   if( obj["box-1"] === obj["box-2"] && obj["box-2"] === obj["box-3"] && obj["box-3"] !== ""){
     result = "winner"
