@@ -1,0 +1,13 @@
+.box {
+  box-sizing: border-box;
+  padding-top: 30px;
+  width: 90px;
+  height: 90px;
+  background: #3498db;
+  border: 1px solid #2980b9;
+}
+.box:hover {
+  transition: 0.1s;
+  background: #34db66;
+  border: 1px solid #1e9642;
+}

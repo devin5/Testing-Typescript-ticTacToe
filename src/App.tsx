@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Box from "./components/Box";
+import { boxArray } from "./data/boxArray";
+import { FindWinner } from "./utils/FindWinner";
+import "./styles/App.css";
+const ScoreObj: any = {};
+boxArray.forEach((boxString: string) => {
+  ScoreObj[boxString] = "";
+});
 
-function App() {
+const App: React.FC = () => {
+  const [userSymbol, setUserSymbol] = useState("X");
+  const [scoreObject, setScoreObject] = useState(ScoreObj);
+
+function restart(){
+  window.location.reload();
+}
+  
+  const result = FindWinner(scoreObject);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div data-testid="app" className="App">
+      {console.log("ScoreObject: ", scoreObject)}
+      {result === "loser" ? null : <h1>{`${userSymbol === "X"? "O": "X"} is ${result}`}</h1>}
+      <div className={result === "winner" ||result ===  "tied" ? "game-board dulled" : "game-board"}>
+        {boxArray.map((box: string) => (
+          <Box
+            key={box}
+            name={box}
+            setScoreObject={setScoreObject}
+            userSymbol={[userSymbol, setUserSymbol]}
+          />
+        ))}
+      </div>
+      {result === "loser" ? null : <button onClick={restart} >Restart</button>}
+
     </div>
   );
-}
+};
 
 export default App;
