@@ -1,32 +1,28 @@
 import React, { useState } from "react";
-
-import "../styles/Box.css"
+import { handleBoxClick } from "../utils/HandleBoxClick";
+import "../styles/Box.css";
 interface BoxProps {
-  name: string
-  userSymbol: [any,any]
-  setScoreObject: (obj: object) => any
+  name: string;
+  userSymbol: [any, any];
+  setScoreObject: (obj: object) => any;
 }
 
-const Box: React.FC<BoxProps> = ({userSymbol, setScoreObject, name}) => {
-  const [marked, setMarked] = useState<string | null>()
+const Box: React.FC<BoxProps> = ({ userSymbol, setScoreObject, name }) => {
+  const [marked, setMarked] = useState<string | null>(null);
+  const params = {
+    marked: marked,
+    setMarked: setMarked,
+    symbol: userSymbol[0],
+    setScoreObject: setScoreObject,
+    name: name,
+    setSymbol: userSymbol[1],
+  };
 
-  function handleBoxClick(){
-    if(!marked){
-      setMarked(userSymbol[0])
-      setScoreObject((obj: any) => {
-       return {...obj, [name]: userSymbol[0]}
-      })
-
-      userSymbol[1]((symbol: any) => symbol === "X" ? "O" : "X")
-      
-    }
-    else{
-      return
-    }
-    
-  }
-return (<div onClick={handleBoxClick} className="box">{marked}</div>)
+  return (
+    <div onClick={() => handleBoxClick(params)} className="box">
+      {marked}
+    </div>
+  );
 };
 
-
-export default Box
+export default Box;
